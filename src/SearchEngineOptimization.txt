@@ -1,0 +1,15 @@
+metatags
+og = open graph 
+
+Boil down SEO
+set of metatags 
+title 
+and the content of your page 
+
+react Helmet 
+higher order component, tillåter oss 
+byta headtag programaticly 
+
+i head this.state.title tex
+
+renderar inte i div utan lägger bara till i head

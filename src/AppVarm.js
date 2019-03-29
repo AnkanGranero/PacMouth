@@ -17,6 +17,17 @@ function createArray(len, value) {
   }
   return arr;
 }
+function createWaveArray(len, value) {
+  let arr = [];
+  let j = 0;
+  for (let i = 0; i < len; i++) {
+    arr.push(value + j++);
+    if (j > 3) {
+      j = 0;
+    }
+  }
+  return arr;
+}
 
 const pictures = [hot1, hot2, hot3, hot4];
 
@@ -103,18 +114,29 @@ class App extends Component {
 
   render() {
     console.log(this.state.direction);
-
+    const wrapperStyle = {
+      display: "flex",
+      flexWrap: "wrap",
+      alignContent: "flex-start",
+      background: "red",
+      alignItems: "stretch"
+      /* justifyContent: "space-evenly" */
+    };
     const imageStyle = {
       height: "18vh",
       margin: "5px",
       padding: "5px",
-      border: "10px solid white "
+      border: "10px solid white   "
     };
     const wrapperHotdogStyle = {
       display: "flex",
       margin: "0px",
       border: "1px solid black ",
       flexWrap: "wrap"
+    };
+    const buttonStyle = {
+      height: "25vh",
+      width: "4px"
     };
     const pacStyle = {
       display: "flex",
@@ -125,7 +147,7 @@ class App extends Component {
       backgroundColor: "red",
       container: "red"
     };
-    const outerWrapperStyle = {
+    const outerWrapper = {
       backgroundColor: "red"
     };
 
@@ -145,28 +167,19 @@ class App extends Component {
     console.log(this.state.arrayOfIndex);
 
     return (
-      <div style={outerWrapperStyle}>
+      <div
+        style={outerWrapper}
+        onKeyDown={this.handleChangeDirection.bind(this)}
+      >
         <img src={pacDirection} style={pacStyle} />
-        <HotDog images={images} />
+        <div
+          style={wrapperStyle}
+          onKeyDown={this.handleChangeDirection.bind(this)}
+        >
+          {images}
+        </div>
       </div>
     );
-  }
-}
-
-class HotDog extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const wrapperStyle = {
-      display: "flex",
-      flexWrap: "wrap",
-      alignContent: "flex-start",
-      background: "red",
-      alignItems: "stretch"
-    };
-    return <div style={wrapperStyle}>{this.props.images}</div>;
   }
 }
 
